@@ -21,7 +21,7 @@ class Solution:
                 list_max.append(init_0)
             else:
                 if s[i] in s[0:i]:
-                    cur_status = 1 
+                    cur_status = 
                 else:
                     cur_status = pre_status+1
                 pre_status = cur_status
