@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 23 05:56:05 2022
 
-@author: huhan
-"""
 
 class Node(object):
     def __init__(self,value):

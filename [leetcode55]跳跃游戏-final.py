@@ -24,8 +24,5 @@ class Solution:
             if cover>= len(nums)-1:
                 return True
         return False
-            
-
-        
 
 nums = [2,3,1,1,4] # true
