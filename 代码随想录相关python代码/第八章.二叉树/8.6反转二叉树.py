@@ -6,11 +6,12 @@
 class Solution1:
     def invertTree(self, root) :
         if not root: # 到底
-            return None
+            return
         root.left, root.right = root.right, root.left #中，这样的写法避免引入中间变量temp
         self.invertTree(root.left) #左
         self.invertTree(root.right) #右
         return root
+
 # 前序遍历法:迭代法写前序遍历的算法
 class Solution2:
     def invertTree(self, root):

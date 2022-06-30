@@ -7,17 +7,22 @@ class Solution1:
         if not root:
             return True
         return self.compare(root.left, root.right)
-        
+    
+    # 这里的def和上一个def并列对齐
     def compare(self, left, right):
         #首先排除空节点的情况
+        # 这些if else的顺序很重要，先讨论完为空的，再讨论非空的
         if left == None and right != None: return False
         elif left != None and right == None: return False
         elif left == None and right == None: return True
+        # 如果数值相同，不能急着返回true，需要比较剩下的节点
         #排除了空节点，再排除数值不相同的情况
         elif left.val != right.val: return False
         
         #此时就是：左右节点都不为空，且数值相同的情况
         #此时才做递归，做下一层的判断
+        # 这里调用compare必须加self
+        # 在class内部调用class内部定义的函数要加前缀self
         outside = self.compare(left.left, right.right) #左子树：左、 右子树：右
         inside = self.compare(left.right, right.left) #左子树：右、 右子树：左
         isSame = outside and inside #左子树：中、 右子树：中 （逻辑处理）

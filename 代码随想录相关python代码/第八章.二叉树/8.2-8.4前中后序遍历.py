@@ -15,7 +15,20 @@ def PreOrder(node,array =[]): # 中左右遍历
     PreOrder(node.left,array)
     PreOrder(node.right,array)
     return array
-    
+
+
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        def preorder(cur, result=[]): 
+            if not cur: # root为空
+                return []
+            result.append(cur.val)
+            preorder(cur.left, result)
+            preorder(cur.right, result)
+            return result
+        result = preorder(root)
+        return result
+
 def InOrder(node,array =[]): # 左中右遍历
     if node == None:
         return

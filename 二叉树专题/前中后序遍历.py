@@ -1,76 +1,87 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 23 05:56:05 2022
 
-@author: huhan
-"""
 
 class Node(object):
     def __init__(self,value):
         self.left = None
         self.right = None
-        self.value = value
-        
-def PreOrder(node,array =[]): # 中左右遍历
-    if node == None:
-        return
-    array.append(node.value)
-    PreOrder(node.left,array)
-    PreOrder(node.right,array)
-    return array
-    
-def InOrder(node,array =[]): # 左中右遍历
-    if node == None:
-        return
-    InOrder(node.left,array)
-    array.append(node.value)
-    InOrder(node.right,array)
-    return array
-
-def PostOrder(node,array =[]): # 左右中遍历
-    if node == None:
-        return
-    PostOrder(node.left,array)
-    PostOrder(node.right,array)
-    array.append(node.value)
-    return array
-    
-#  非迭代法前序遍历
-def preorderTraversal(root):
-        queue = [] # 暂存待搜索的节点
-        result = [] # 存储结果
-        if root == None:
-            return
-        else:
-            queue.append(root) # 加入一个元素到队列里
-            while len(queue)>0:
-                temp = queue.pop() # 取出队列的头元素
-                result.append(temp.value) # 
-                if temp.right:
-                    queue.append(temp.right)
-                if temp.left:
-                    queue.append(temp.left)
+        self.val = value
+# ----------------------前序遍历----------------------------
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        def preorder(cur, result=[]): 
+            if not cur: # root为空
+                return []
+            result.append(cur.val)
+            preorder(cur.left, result)
+            preorder(cur.right, result)
+            return result
+        result = preorder(root)
         return result
 
-#  非迭代法-中序遍历
-# 左中右
-def inorderTraversal(root):
-    cur = root
-    stack = []
-    result = []
-    if root == None: 
-            return []
-    while cur or stack: # 一直循环到最左的节点
-        if cur: #如果当前节点不为空,则一直进入到最左的节点
-            stack.append(cur)
-            cur = cur.left
-        else: # 跳出开始去找右节点
+class Solution:
+    def preorderTraversal(self, root):
+        # 非迭代法
+        stack = []
+        result = []
+        if not root:
+            return stack
+        stack.append(root)
+        while stack:
             cur = stack.pop()
             result.append(cur.val)
-            cur = cur.right
-    temp = queue.pop()
-    
+            if cur.right:
+                stack.append(cur.right)
+            if cur.left:
+                stack.append(cur.left)
+        return result
+
+# ----------------------中序遍历----------------------------
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        def  inorder(cur,result = []):
+            if not cur:
+                #return result
+                return [] # 这里写return result也行
+            inorder(cur.left)
+            result.append(cur.val)
+            inorder(cur.right)
+            return result
+        result = inorder(root)
+        return result
+  
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # 中序遍历，遍历和读取的节点不同步
+        stack = []
+        result = []
+        if not root:
+            return []
+        # 先走到最左边
+        cur  = root
+        while cur or stack:
+            if cur:
+                stack.append(cur)
+                cur = cur.left
+        #while stack: # 其实每一个stack都要做这一步 所以合并到一起
+            else:
+                cur = stack.pop()
+                result.append(cur.val)
+                cur = cur.right
+        return result
+# ----------------------后序遍历----------------------------
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        def postorder(root,result = []):
+            if not root:
+                return []
+            postorder(root.left)
+            postorder(root.right)
+            result.append(root.val)
+            return result
+        result  = postorder(root)
+        return result
 
 #  非迭代法后序遍历
 def postorderTraversal(root):
