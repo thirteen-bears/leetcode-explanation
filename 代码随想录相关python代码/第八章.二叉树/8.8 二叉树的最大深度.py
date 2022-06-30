@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-class Solution:
+# 迭代法
+class Solution1:
     def levelOrder(self, root):
         results = []
         if not root:
@@ -24,3 +25,5 @@ class Solution:
                     que.append(cur.right)
             results.append(result)  # 把一层遍历的结果放入最后结果中
         return count
+
+# 递归法

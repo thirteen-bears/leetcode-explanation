@@ -1,8 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
-# 101. 对称二叉树
-class Solution1:
     def isSymmetric(self, root: TreeNode) -> bool:
         if not root:
             return True
